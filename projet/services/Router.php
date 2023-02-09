@@ -5,8 +5,9 @@
 <!--  "route=user-edit" => UserController::edit  -->
 <!--  quoi que ce soit d'autre => UserController::index -->
 <?php
+require 'controllers/UserController.php';
 class Router {
-    private UserController $uc
+    private UserController $uc;
     public function __construct()
     {
         $this->uc = new UserController();
@@ -33,4 +34,5 @@ class Router {
             $this->uc->index();
         }
     }
+}
 ?>

@@ -1,13 +1,3 @@
-<!--User.php-->
-<!--La classe User a 4 attributs privés :-->
-
-<!--$id : int-->
-<!--$email : string-->
-<!--$username : string-->
-<!--$password : string-->
-<!--Son constructeur prend email, username et password en paramètres et les initialise. Il initialise id avec la valeur null.-->
-
-<!--Tous les attributs ont des getters et setters publics.-->
 <?php
 class User {
 
@@ -21,8 +11,8 @@ class User {
     public function __construct(string $email, string $username, string $password)
     {
         $this->id = null;
-        $this->firstName = $email;
-        $this->lastName = $username;
+        $this->email = $email;
+        $this->username = $username;
         $this->password = $password;
     }
 

@@ -22,28 +22,33 @@ qui modifiera le User dans la base de données.-->
 
 <!--Demande à render d'afficher users/edit.phtml.-->
 <?php
+require 'AbstractController.php';
 class UserController extends AbstractController {
     private UserManager $manager;
     
     public function __construct()
     {
-        $this->manager = new UserManager();
+        $this->manager = new UserManager("kilyangerard_phpj11","3306","db.3wa.io","kilyangerard","e17f39e5cb4de95dba99a2edd6835ab4");
     }
-
     public function index()
-    {
-        $this->manager->getAllUsers();
-        $this->manager->render($view,$values);
-        require $view.'/'.$values.'.phtml'; 
-    }
-    public function create(array $post)
-    {
+        {
+            $users=$this->manager->getAllUsers();
+            $this->render("index", ["users"=>$users]);
+        }
         
-    }
-    public function edit(array $post)
-    {
+        public function create(array $post)
+        {
+            $user = new User($post['email'], $post['username'], $post['password']);
+            $this->manager-> insertUser($user);
+            render("create", ["user"=>$this->manager->insertUser($user)]);
+        }
         
-    }
+        public function edit(array $post)
+        {
+            $user = new User($post['email'], $post['username'], $post['password']);
+            $this->manager-> editUser($user);
+            render("edit", ["user"=>$user]);
+        }
 }
 
 ?>
